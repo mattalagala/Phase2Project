@@ -2,21 +2,21 @@
   "name": "phase2project",
   "version": "1.0.0",
   "description": "Inventory App",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mattalagala/Phase2Project.git"
   },
   "author": "Daisy Umotong, Adeel Rajwani, Matthew Alagala",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/mattalagala/Phase2Project/issues"
   },
   "homepage": "https://github.com/mattalagala/Phase2Project#readme",
   "dependencies": {
-    "knex": "^0.21.1"
+    "express": "4.17.1",
+    "init": "^0.1.2",
+    "knex": "^0.21.1",
+    "pg": "8.2.1"
   }
 }

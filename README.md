@@ -13,7 +13,7 @@ npm install pg -- installs pg interface for knex and psql
 
 cat package.json -- verify dependecies have been added
 
-npm knex init -- creates knexfile.js -- make sure knexfile.js has development environment info.
+npm install knex --save -- creates knexfile.js -- make sure knexfile.js has development environment info.
 
         module.exports = {
 
@@ -34,7 +34,8 @@ npm knex init -- creates knexfile.js -- make sure knexfile.js has development en
         }
 
         };
-create 'knexfile_example.js' -- hides db login information from public repo
+
+npx knex init -- create 'knexfile_example.js' -- hides db login information from public repo
 
 module.exports = {
 
