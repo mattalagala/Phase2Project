@@ -4,7 +4,7 @@ Create an app that interfaces psql db with frontend.
 
 ## Workflow
 
-![Image of Yaktocat](https://https://github.com/mattalagala/Phase2Project/blob/master/img/Inventory%20App.jpg)
+![Image of Workflow](https://github.com/mattalagala/Phase2Project/blob/master/img/Inventory%20App.jpg)
 
 ## Setup
 
