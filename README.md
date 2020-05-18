@@ -1,4 +1,4 @@
-# Phase2Project
+# Phase2Project - Inventory App
 
 Create an app that interfaces psql db with frontend.
 
