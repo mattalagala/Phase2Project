@@ -2,7 +2,14 @@
 
 Create an app that interfaces psql db with frontend.
 
-Installation
+## Workflow
+
+![Image of Yaktocat](https://https://github.com/mattalagala/Phase2Project/blob/master/img/Inventory%20App.jpg)
+
+## Setup
+
+Create an app that interfaces psql db with frontend.
+
 npm init -- creates package.json
 
 npm intall knex -- installs knex dependency to interface with pg db
