@@ -24,6 +24,7 @@ npm install knex --save -- creates knexfile.js -- make sure knexfile.js has deve
    
 npx knex init -- create 'knexfile.js' 
 
+```
   module.exports = {
 
         development: {
@@ -43,9 +44,10 @@ npx knex init -- create 'knexfile.js'
         }
 
         };
-
+```
 cp knexfile.js example.knexfile.js - copies generic knexfile.js template to example.knefile.js
 
+```
 module.exports = {
 
   development: {
@@ -65,16 +67,27 @@ module.exports = {
   }
 
 };
+```
 
 ADD KNEXFILE.JS to .gitignore
 
 ```
-
 node_modules
 .DS_Store
 knexfile.js
-
 ```
+
+CREATE MIGRATIONS 
+
+npx knex migrate:make 'MIGRATION_FILE_NAME.js'      //Create your migration file//
+
+npx knex migrate:up       //Use your migration file//
+
+CREATE YOUR SEED DATA
+
+npx knex seed:make 'SEED_FILE_NAME.js'     //CREATES SEED FILE//
+  
+npx knex seed:run   ||    npx knex seed: run --specific 'FILENEAME.js'    //RUNS SEED DATA//
 
 
 
