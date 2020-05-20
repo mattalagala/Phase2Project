@@ -1,6 +1,6 @@
 const createCategoryTable = `
 create table category (
-id serial primary key,
+"category_id" serial primary key,
 "category_name" text,
 "category_picture" text,
 ctime timestamptz,
