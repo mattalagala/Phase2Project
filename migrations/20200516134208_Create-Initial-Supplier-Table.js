@@ -23,3 +23,4 @@ exports.down = function(knex) {
 return knex.raw(dropSupplierTable)
   
 };
+       
