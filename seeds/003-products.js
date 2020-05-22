@@ -10,7 +10,7 @@ exports.seed = function(knex) {
         {products_id: 3, category_id: 1, products_manufacturer: 'Paul Reed Smith (PRS)',products_model: 'Silver Sky', products_color: 'Dodgem Blue', products_price: '$2,229.99',products_picture: '',},
         {products_id: 4, category_id: 2, products_manufacturer: 'Martin',products_model: 'D18', products_color: 'Natural', products_price: '$2,499.99', products_picture: '',},
         {products_id: 5, category_id: 2, products_manufacturer: 'Taylor',products_model: 'GS Mini', products_color: 'Koa', products_price: '$799.99', products_picture: '',},
-        {products_id: 6, category_id: 2, products_manufacturer: 'Gibson',products_model: 'SJ-200', products_color: 'Natural', products_price: '$5,049.99', products_picture: '',},
+        {products_id: 6, category_id: 2, products_manufacturer: 'Gibson',products_model: 'SJ-200', products_color: '', products_price: '$5,049.99', products_picture: '',},
         {products_id: 7, category_id: 3, products_manufacturer: 'Fender',products_model: '65 Deluxe Reverb', products_color: 'Tweed', products_price: '$1,249.99', products_picture: '',},
         {products_id: 8, category_id: 3, products_manufacturer: 'Fender',products_model: 'Blues Junior', products_color: 'Tweed', products_price: '$599.99', products_picture: '',},
         {products_id: 9, category_id: 3, products_manufacturer: 'Orange',products_model: 'Crush 35RT', products_color: 'Orange', products_price: '$269.99', products_picture: '',},
