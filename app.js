@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require('express')
 const db = require('./lib/db')
 // const validate = require('./lib/validate')
@@ -145,24 +144,3 @@ db.connect ()
 // db.connect()
 //   .then(startExpressApp)
 //   .catch(bootupSequenceFailed)
-=======
-const express = require ('express')
-
-const app = express()
-
-app.use(express.static ('public'));
-app.use(express.urlencoded ({extended: true}));
-
-const port = 9999
-
-app.listen (port, () => {
-    console.log('express is listening on port ' + port)
-})
-
-
-app.set ('view engine', 'hbs');
-
-app.get ('/', function(req, res) {
-    res.render('index', {title: 'Hey', message: 'Hello Daisy!'})
-})
->>>>>>> efda4eeea356a69def513c3e953f5de88243712c
