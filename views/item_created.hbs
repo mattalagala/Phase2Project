@@ -1,0 +1,27 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Mr Listman - {{listName}} - Item added</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" integrity="sha256-qS+snwBgqr+iFVpBB58C9UCxKFhyL03YHpZfdNUhSEw=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <main class="section">
+    <div class=container>
+      <h1 class="title">Mr Listman - {{listName}}</h1>
+      <hr>
+      <div class=content>
+        <p>New item added: <strong>{{description}}</strong></p>
+        <p><a href="/list/{{listUUID}}">Go back</a></p>
+      </div>
+    </div>
+</main>
+
+</body>
+
+</html>

@@ -2,10 +2,7 @@
   "name": "phase2project",
   "version": "1.0.0",
   "description": "Inventory App",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mattalagala/Phase2Project.git"
@@ -17,7 +14,12 @@
   "homepage": "https://github.com/mattalagala/Phase2Project#readme",
   "dependencies": {
     "express": "4.17.1",
+    "hbs": "^4.1.1",
     "knex": "0.21.1",
+    "nodemon": "^2.0.4",
     "pg": "8.2.1"
+  },
+  "scripts": {
+    "start-dev": "nodemon app.js"
   }
 }
