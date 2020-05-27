@@ -6,13 +6,17 @@
   <title>Inventory App</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" integrity="sha256-qS+snwBgqr+iFVpBB58C9UCxKFhyL03YHpZfdNUhSEw=" crossorigin="anonymous" />
+=======
+>>>>>>> efda4eeea356a69def513c3e953f5de88243712c
   <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
   <main class="section">
     <div class=container>
+<<<<<<< HEAD
       <h1 class="title">Inventory DB</h1>
       <hr>
       <div class=content>
@@ -23,6 +27,17 @@
             <li><a href ='/category/{{this.category_id}}'><img src='{{this.category_picture}}'></a></li>
           {{/each}} 
         </ul>  
+=======
+      <h1 class="title">Inventory App</h1>
+      <hr>
+      <div class=content>
+        <p>Here are your lists:</p>
+        <ul>
+          {{#each lists}}
+            <li><a href="/list/{{this.uuid}}">{{this.name}}</a></li>
+          {{/each}}
+        </ul>
+>>>>>>> efda4eeea356a69def513c3e953f5de88243712c
       </div>
     </div>
 </main>
@@ -32,4 +47,8 @@
   <script src="js/main.js"></script> -->
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> efda4eeea356a69def513c3e953f5de88243712c

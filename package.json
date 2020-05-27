@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "Inventory App",
   "main": "app.js",
+<<<<<<< HEAD
+=======
+  "scripts": {
+    "start-dev": "nodemon app.js"
+  },
+>>>>>>> efda4eeea356a69def513c3e953f5de88243712c
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mattalagala/Phase2Project.git"
@@ -14,12 +20,23 @@
   "homepage": "https://github.com/mattalagala/Phase2Project#readme",
   "dependencies": {
     "express": "4.17.1",
+<<<<<<< HEAD
     "hbs": "^4.1.1",
+=======
+    "hbs": "4.1.1",
+>>>>>>> efda4eeea356a69def513c3e953f5de88243712c
     "knex": "0.21.1",
     "nodemon": "^2.0.4",
     "pg": "8.2.1"
   },
+<<<<<<< HEAD
   "scripts": {
     "start-dev": "nodemon app.js"
   }
+=======
+  "devDependencies": {
+    "nodemon": "2.0.4"
+  },
+  "license": "ISC"
+>>>>>>> efda4eeea356a69def513c3e953f5de88243712c
 }
