@@ -1,12 +1,8 @@
 const createSupplierTable = `
 create table supplier (
-id serial primary key,
-"category" text,
-"name" text unique,
-"address" text unique,
-"city" text, 
-"state" text,
-"zip" text,
+"supplier_id" serial primary key,
+"company_name" text unique,
+"company_logo" text,
 ctime timestamptz,
 mtime timestamptz default current_timestamp
 )
