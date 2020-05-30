@@ -14,8 +14,6 @@ const port = 9999
 // set the template engine
 app.set('view engine', 'hbs')
 
-
-
 // Shows the lists on the homepage
 app.get('/', function (req, res) {
   db.getCategoryList()
@@ -25,14 +23,15 @@ app.get('/', function (req, res) {
 })
 
 app.param('category_id', function (req, res, nextFn, category_id) {
-  db.getProducts(category_id)
-  .then((theProducts) => {
+ const myPromise = db.getProducts(category_id)
+  
+ myPromise.then((theProducts) => {
     req.listObject = req.listObject || {}
     req.listObject.list = theProducts
      nextFn()
   })
   .catch((err)=> {
-    console.log('AARHHHHHH DIDNT WORK')
+    console.log('AARHHHHHH DIDNT WORK', err)
   })
 })
 
