@@ -24,10 +24,11 @@ app.get('/', function (req, res) {
 
 app.param('category_id', function (req, res, nextFn, category_id) {
  const myPromise = db.getProducts(category_id)
-  
  myPromise.then((theProducts) => {
-    req.listObject = req.listObject || {}
-    req.listObject.list = theProducts
+    req.monkMusic = req.monkMusic || {}
+    req.monkMusic.list = theProducts
+    console.log('******* THIS IS THE PRODUCTS *******')
+    console.log(theProducts, '*****HEEEEYYYYYYYYYYYYYYY')
      nextFn()
   })
   .catch((err)=> {
@@ -36,8 +37,9 @@ app.param('category_id', function (req, res, nextFn, category_id) {
 })
 
 app.get('/category/:category_id', function (req, res) {
-  const theProducts = req.listObjects.list
-  res.render('products_page', {theProducts: products})
+  const theProducts = req.monkMusic.list
+  console.log(theProducts, '**#*#*#*#*#*#* CHECK THIS OUT!!')
+  res.render('products_page', {theProducts: theProducts})
   })
 
 const startExpressApp = () => {
