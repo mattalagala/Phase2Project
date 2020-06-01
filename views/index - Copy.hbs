@@ -1,0 +1,33 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Inventory App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" integrity="sha256-qS+snwBgqr+iFVpBB58C9UCxKFhyL03YHpZfdNUhSEw=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <main class="section">
+    <div class=container>
+      <h1 class="title">Inventory DB</h1>
+      <hr>
+      <div class=content>
+        <p>Here are your Categories:</p>
+        
+        <ul>
+          {{#each lists}}
+            <li><a href ='/category/{{this.category_id}}'><img src='{{this.category_picture}}'></a></li>
+          {{/each}} 
+        </ul>  
+      </div>
+
+  <!-- <script src="js/vendor/modernizr-3.11.0.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script> -->
+</body>
+
+</html>
