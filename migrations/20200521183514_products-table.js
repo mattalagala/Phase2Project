@@ -7,6 +7,8 @@ create table products (
 "products_color" text,
 "products_price" text,
 "products_picture" text,
+"product_summary" text,
+"product_description" text,
 ctime timestamptz,
 mtime timestamptz default current_timestamp
 )
