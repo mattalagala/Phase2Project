@@ -1,4 +1,3 @@
-
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('products').del()
@@ -68,7 +67,7 @@ exports.seed = function(knex) {
         {products_id: 16, category_id: 1, products_manufacturer: 'Gibson',products_model: 'ES-335', products_color: 'Satin Vintage Burst', products_price: '$2,599.99', products_picture: 'https://cdn.shopify.com/s/files/1/0916/0836/products/39451_Gibson_ES-335_120790208_1_4000x@3x.progressive.jpg?v=1584393222',
           product_summary: 'The Gibson ES-335 DOT is the cornerstone of the Gibson ES lineup. From its inaugural appearance in 1958',
           product_description: 'The Gibson ES-335 DOT is the cornerstone of the Gibson ES lineup. From its inaugural appearance in 1958, the Gibson ES-335 immediately set an unmatched standard. The pearloid dot inlay rosewood fingerboard on a hand-rolled Rounded "C" mahogany neck remind players where it all started. The all-new Gibson Calibrated T-Type humbucking pickups paired with Gibsons hand-wired control assembly showcases the versatile Gibson ES tone that players have craved for over 60 years. Tuning stability and precise intonation are provided by the Vintage Deluxe tuners with Keystone buttons paired with a lightweight Aluminum ABR-1 bridge and stopbar tailpiece.'},
-       
+      
       ]);
     });
 };
