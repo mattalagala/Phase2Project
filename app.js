@@ -1,4 +1,10 @@
 const express = require('express')
+const passport = require('passport')
+const cookieSession = require('cookie-session')
+require('./passport') 
+
+
+
 const db = require('./lib/db')
 // const validate = require('./lib/validate')
 
@@ -11,11 +17,74 @@ app.use(express.urlencoded({ extended: true }))
 
 const port = 9999
 
+//Cookie Sessions
+app.use(cookieSession({
+  name: 'musicmonk-session',
+  keys: ['key1', 'key2']
+}))
+
+//Check if User is logged in
+const isLoggedIn = (req, res, next) => {
+  if (req.user){
+    next()
+  } 
+  else {
+    res.sendStatus(401)
+  }
+}
+
+//Google Authentication functions
+app.use(passport.initialize());
+app.use(passport.session());
+
 // set the template engine
 app.set('view engine', 'hbs')
 
-// Shows the lists on the homepage
-app.get('/', function (req, res) {
+
+app.get('/logged_out', (req, res)=>{
+  res.send('You are not logged in!')
+})
+
+//Google Route Failure
+app.get('/failed', (req, res)=> res.send('Login Failed'))
+app.get('/success', isLoggedIn, (req, res)=> {
+  db.getCategoryList()
+  .then((lists)=>{ 
+  res.render('index', {lists: lists})
+  })
+})
+
+
+// Google Authentication
+app.get('/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+
+app.get('/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/failed' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/success')
+  })
+
+
+// const isAuthenticated = function authenticate () {
+//   if (passport.authenticate.user.id == '') {
+//     console.log('#@#@##@ I GUESSSS IT WORKED @##$#@#@#$')
+//   } else (
+//     console.log('!!!!! GUESS IT DIDNT WORK !!!!')
+//   )
+// }
+
+app.get('/logout', (req, res)=>{
+  req.session = null
+  req.logout()
+  res.redirect('/logged_out')
+})
+
+
+// // Shows the lists on the homepage
+app.get('/', isLoggedIn, function (req, res) {
   db.getCategoryList()
   .then((lists)=>{ 
     res.render('index', {lists: lists})
@@ -23,24 +92,60 @@ app.get('/', function (req, res) {
 })
 
 app.param('category_id', function (req, res, nextFn, category_id) {
- const myPromise = db.getProducts(category_id)
- myPromise.then((theProducts) => {
+ const getProductsPromise = db.getProducts(category_id)
+ const getCategoryPromise = db.getCategory(category_id)
+    Promise.all([getProductsPromise, getCategoryPromise])
+  .then(([products, category]) => {
     req.monkMusic = req.monkMusic || {}
-    req.monkMusic.list = theProducts
+    req.monkMusic.products = products
+    req.monkMusic.category = category
     console.log('******* THIS IS THE PRODUCTS *******')
-    console.log(theProducts, '*****HEEEEYYYYYYYYYYYYYYY')
-     nextFn()
+    console.log(category, '*****HEEEEYYYYYYYYYYYYYYY')
+    nextFn()
   })
   .catch((err)=> {
     console.log('AARHHHHHH DIDNT WORK', err)
+    res.status(404).render('error_page')
   })
 })
 
-app.get('/category/:category_id', function (req, res) {
-  const theProducts = req.monkMusic.list
-  console.log(theProducts, '**#*#*#*#*#*#* CHECK THIS OUT!!')
-  res.render('products_page', {theProducts: theProducts})
+app.get('/category/:category_id', isLoggedIn, function (req, res) {
+  const theProducts = req.monkMusic.products
+  const productCategoryTitle = req.monkMusic.category[0]['category_name']
+  console.log(productCategoryTitle, '**#*#*#*#*#*#* CHECK THIS OUT!!')
+  db.getCategoryList()
+  .then((lists)=>{ 
+    res.render('products_page', {theProducts:theProducts, categoryTitle: productCategoryTitle})
+    }) 
   })
+
+  app.param('products_id', function (req, res, nextFn, products_id) {
+       db.getItem(products_id)
+       .then((item)=> {
+       req.monkMusic = req.monkMusic || {}
+       req.monkMusic.item = item
+       console.log('******* THIS IS THE PRODUCTS *******')
+       console.log(item, '*****HEEEEYYYYYYYYYYYYYYY')
+       nextFn()
+     })
+     .catch((err)=> {
+       console.log('AARHHHHHH DIDNT WORK', err)
+       res.status(404).send('error_page')
+     })
+   })
+   
+   app.get('/category/:category_id/:products_id', function (req, res) {
+     const theItem = req.monkMusic.item
+     console.log(theItem, '**#*#*#*#*#*#* getItem PROMISE')
+     db.getProductsList()
+     .then((result)=>{ 
+       res.render('item_page', {theItem:theItem})
+       })
+      .catch((err)=>{
+       console.log('bannnaaanna')
+       res.status(404).send('error_page')
+       })
+     })
 
 const startExpressApp = () => {
   app.listen(port, () => {
@@ -69,7 +174,6 @@ function fetchProductsList () {
   })
 }
 
-
 // Global kickoff point
 db.connect()
   .then(startExpressApp)
@@ -80,78 +184,3 @@ db.connect()
     console.log ('You connected to the database!')
     })
   .catch(bootupSequenceFailed)
-  
-
-// app.param('listUUID', function (req, res, nextFn, listUUID) {
-//   db.getList(listUUID)
-//     .then((theList) => {
-//       req.inventorydb = req.inventorydb || {}
-//       req.inventorydb.list = theList
-//       nextFn()
-//     })
-//     .catch(() => {
-//       res.status(404).send('list not found')
-//     })
-// })
-
-// the homepage shows your lists
-// app.get('/', function (req, res) {
-//   db.getLists()
-//     .then((lists) => {
-//       res.render('index', { lists: lists })
-//     })
-//     .catch(() => {
-//       // TODO: show an error page here
-//     })
-// })
-
-// // the list page shows the items in the list
-// app.get('/list/:listUUID', function (req, res) {
-//   const theList = req.mr_listman.list
-//   res.render('list_page', {
-//     listUUID: theList.uuid,
-//     listName: theList.name,
-//     items: theList.items
-//   })
-// })
-
-// // add a new item to a list
-// app.post('/list/:/new-item', function (req, res) {
-//   const theList = req.mr_listman.list
-//   const newDescription = req.body.description
-
-//   if (validate.validDescription(newDescription)) {
-//     // create the item
-//     db.createItem(theList.id, newDescription)
-//       .then(function (newItem) {
-//         res.render('item_created', {
-//           listUUID: theList.uuid,
-//           listName: theList.name,
-//           description: newItem.description
-//         })
-//       })
-//       .catch(() => {
-//         res.status(500).send('oh man, we totally messed up')
-//       })
-//   } else {
-//     // TODO: show them an error page
-//     res.status(400).send('bad input')
-//   }
-// })
-
-// const startExpressApp = () => {
-//   app.listen(port, () => {
-//     console.log('express is listening on port ' + port)
-//   })
-// }
-
-// const bootupSequenceFailed = (err) => {
-//   console.error('Unable to connect to the database:', err)
-//   console.error('Goodbye!')
-//   process.exit(1)
-// }
-
-// // global kickoff point
-// db.connect()
-//   .then(startExpressApp)
-//   .catch(bootupSequenceFailed)
