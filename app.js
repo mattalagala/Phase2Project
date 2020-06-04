@@ -84,7 +84,7 @@ app.get('/logout', (req, res)=>{
 
 
 // // Shows the lists on the homepage
-app.get('/', isLoggedIn, function (req, res) {
+app.get('/', function (req, res) {
   db.getCategoryList()
   .then((lists)=>{ 
     res.render('index', {lists: lists})
@@ -109,7 +109,7 @@ app.param('category_id', function (req, res, nextFn, category_id) {
   })
 })
 
-app.get('/category/:category_id', isLoggedIn, function (req, res) {
+app.get('/category/:category_id', function (req, res) {
   const theProducts = req.monkMusic.products
   const productCategoryTitle = req.monkMusic.category[0]['category_name']
   console.log(productCategoryTitle, '**#*#*#*#*#*#* CHECK THIS OUT!!')

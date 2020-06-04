@@ -16,7 +16,7 @@ passport.serializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
     clientID: '214399234969-3s3pb55rg0r46bhleosqddnc8fs57ucm.apps.googleusercontent.com',
     clientSecret: 'iP6SceV9Rabw4jV8YugjrbBR',
-    callbackURL: "http://localhost:9999/google/callback"
+    callbackURL: "http://www.matthewalagala/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // user profile info (mainly profile id) to check if the user is registered in your db. 
