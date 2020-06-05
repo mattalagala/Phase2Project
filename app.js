@@ -84,7 +84,7 @@ app.get('/logout', (req, res)=>{
 
 
 // // Shows the lists on the homepage
-app.get('/', function (req, res) {
+app.get('/', isLoggedIn, function (req, res) {
   db.getCategoryList()
   .then((lists)=>{ 
     res.render('index', {lists: lists})
@@ -109,7 +109,7 @@ app.param('category_id', function (req, res, nextFn, category_id) {
   })
 })
 
-app.get('/category/:category_id', function (req, res) {
+app.get('/category/:category_id', isLoggedIn, function (req, res) {
   const theProducts = req.monkMusic.products
   const productCategoryTitle = req.monkMusic.category[0]['category_name']
   console.log(productCategoryTitle, '**#*#*#*#*#*#* CHECK THIS OUT!!')
@@ -134,7 +134,7 @@ app.get('/category/:category_id', function (req, res) {
      })
    })
    
-   app.get('/category/:category_id/:products_id', function (req, res) {
+   app.get('/category/:category_id/:products_id', isLoggedIn,function (req, res) {
      const theItem = req.monkMusic.item
      console.log(theItem, '**#*#*#*#*#*#* getItem PROMISE')
      db.getProductsList()
