@@ -8,17 +8,7 @@ module.exports = {
           host: 206.81.13.50
       database: 'inventorydb',
       user:     'postgres',
-      password: ''
-host: 206.81.13.50 
-      database: 'inventorydb',
-      user:     'postgres',
-      password: ''
-"host": "206.81.13.50",
-  "user": "postgres",
-  "port": 5432,
-  "ssl": false,
-  "database": "inventorydb",
-  "password": ""
+      password: 'Longbow15Y'
     },
     pool: {
       min: 2,
